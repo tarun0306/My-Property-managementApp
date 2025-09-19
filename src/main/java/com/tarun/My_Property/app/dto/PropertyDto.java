@@ -5,8 +5,7 @@ package com.tarun.My_Property.app.dto;
 public class PropertyDto {
 	
 	private Long id;
-     private String title;
-	
+    private String title;
 	private String description;
 	private String ownerEmail;
 	private String address;
