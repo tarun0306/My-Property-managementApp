@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +25,7 @@ public class PropertyController {
 	
 	@Autowired
 	private PropertyService propertyService;
+	
 	//RESTFUL API is Just mappo
 	//http://localhost:8080/api/v1/hello
 
@@ -42,12 +45,20 @@ public class PropertyController {
 		return responseEntity;
 	}
 	
-	
+	@PutMapping("/properties/{id}")
+	public ResponseEntity<PropertyDto>updateProperty(@RequestBody PropertyDto propertyDto ,@PathVariable Long id) {
+		ResponseEntity<PropertyDto> responseEntity = new ResponseEntity<>(propertyService.updateProperty(propertyDto, id),HttpStatus.CREATED);
+		return responseEntity;
+	}
 	@GetMapping("/property/{id}")
-	public PropertyDto getPropertyById(@PathVariable("id") Long id) {
-		
-		PropertyDto propertyDetails= propertyService.getPropertyById(id);
-		return propertyDetails;
+	public ResponseEntity<PropertyDto> getPropertyById(@PathVariable Long id) {
+		ResponseEntity<PropertyDto> responseEntity = new ResponseEntity<>(propertyService.propertyByid(id),HttpStatus.OK);
+		return responseEntity;
+	}
+	@PatchMapping("/properties/{id}")
+	public ResponseEntity<PropertyDto> updateDes(@RequestBody PropertyDto propertyDto,@PathVariable Long id){
+		ResponseEntity<PropertyDto> responseEntity = new ResponseEntity<>(propertyService.updateDes(propertyDto, id),HttpStatus.ACCEPTED);
+		return responseEntity;
 	}
 	
 }

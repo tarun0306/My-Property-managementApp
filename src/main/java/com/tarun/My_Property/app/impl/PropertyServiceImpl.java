@@ -4,6 +4,7 @@ package com.tarun.My_Property.app.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,14 +40,77 @@ public class PropertyServiceImpl implements PropertyService {
 		return propList;
 	}
 	@Override
-	public PropertyDto getPropertyById(Long id) {
-		List<PropertyEntity> pe =(List<PropertyEntity>) propertyRepo.findAll();
+	public PropertyDto updateProperty(PropertyDto propertyDto, Long id) {
+		Optional<PropertyEntity> optEn = propertyRepo.findById(id);
+		PropertyDto dto = null;
+		if(optEn.isPresent()) {
+			PropertyEntity pe = optEn.get();
+			pe.setAddress(propertyDto.getAddress());
+			pe.setOwnerEmail(propertyDto.getOwnerEmail());
+			pe.setDescription(propertyDto.getDescription());
+			pe.setTitle(propertyDto.getTitle());
+			pe.setPrice(propertyDto.getPrice());
+			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+			propertyRepo.save(pe);
 		
-		for(PropertyEntity e : pe) {
-			if(e.getId() == id) {
-				 return propertyConverter.cpnvertEnitytoDTO(e);
-			}
 		}
-		return null;
+		return dto;
 	}
+	@Override
+	public PropertyDto propertyByid(Long id) {
+		Optional<PropertyEntity> optEn = propertyRepo.findById(id);
+		PropertyDto dto = null;
+		if(optEn.isPresent()) {
+			PropertyEntity pe = optEn.get();
+			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+		}
+		return dto;
+	}
+	@Override
+	public PropertyDto updateDes(PropertyDto propertyDto, Long id) {
+		Optional<PropertyEntity> optEn = propertyRepo.findById(id);
+		PropertyDto dto = null;
+		if(optEn.isPresent()) {
+			PropertyEntity pe = optEn.get();
+			pe.setDescription(propertyDto.getDescription());
+			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+		}
+		return dto;
+	}
+	@Override
+	public PropertyDto updateemail(PropertyDto propertyDto, Long id) {
+		// TODO Auto-generated method stub
+		Optional<PropertyEntity> optEn = propertyRepo.findById(id);
+		PropertyDto  dto= null;
+		if(optEn.isPresent()) {
+			PropertyEntity pe = optEn.get();
+			pe.setOwnerEmail(propertyDto.getOwnerEmail());
+			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+		}
+		return dto;
+	}
+	@Override
+	public PropertyDto updateprice(PropertyDto propertyDto, Long id) {
+		Optional<PropertyEntity> optEn = propertyRepo.findById(id);
+		PropertyDto  dto= null;
+		if(optEn.isPresent()) {
+			PropertyEntity pe = optEn.get();
+			pe.setPrice(propertyDto.getPrice());
+			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+		}
+		return dto;
+	}
+	@Override
+	public PropertyDto updatetitle(PropertyDto propertyDto, Long id) {
+		Optional<PropertyEntity> optEn = propertyRepo.findById(id);
+		PropertyDto  dto= null;
+		if(optEn.isPresent()) {
+			PropertyEntity pe = optEn.get();
+			pe.setTitle(propertyDto.getTitle());
+			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+		}
+		return dto;
+	}
+	
+	
 }

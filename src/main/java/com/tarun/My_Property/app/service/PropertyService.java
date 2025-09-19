@@ -8,8 +8,13 @@ import com.tarun.My_Property.app.dto.PropertyDto;
 
 public interface PropertyService {
 	
-	public PropertyDto saveProperty(PropertyDto propertyDto);
-	public List<PropertyDto> getAllProperties();
-	public PropertyDto getPropertyById(Long id);
+	PropertyDto saveProperty(PropertyDto propertyDto);
+	List<PropertyDto> getAllProperties();
+	PropertyDto updateProperty(PropertyDto propertyDto, Long id);
+	PropertyDto propertyByid(Long id);
+	PropertyDto updateDes(PropertyDto propertyDto,Long id);
+	PropertyDto updateemail(PropertyDto propertyDto,Long id);
+	PropertyDto updatetitle(PropertyDto propertyDto,Long id);
+	PropertyDto updateprice(PropertyDto propertyDto,Long id);
 	
 }
