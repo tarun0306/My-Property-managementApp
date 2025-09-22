@@ -23,8 +23,7 @@ public class PropertyEntity {
 	@Column(name = "PROPERTY_TITLE",nullable=false)
 	private String title;
 	private String description;
-	@Column(name = "EMAIL",nullable=false)
-	private String ownerEmail;
+	
 	private String address;
 	private Double price;
 	public Long getId() {
@@ -45,12 +44,7 @@ public class PropertyEntity {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getOwnerEmail() {
-		return ownerEmail;
-	}
-	public void setOwnerEmail(String ownerEmail) {
-		this.ownerEmail = ownerEmail;
-	}
+	
 	public String getAddress() {
 		return address;
 	}
