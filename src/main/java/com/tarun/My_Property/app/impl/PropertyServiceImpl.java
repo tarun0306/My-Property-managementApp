@@ -74,6 +74,7 @@ public class PropertyServiceImpl implements PropertyService {
 			PropertyEntity pe = optEn.get();
 			pe.setDescription(propertyDto.getDescription());
 			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+			propertyRepo.save(pe);
 		}
 		return dto;
 	}
@@ -86,6 +87,7 @@ public class PropertyServiceImpl implements PropertyService {
 			PropertyEntity pe = optEn.get();
 			pe.setOwnerEmail(propertyDto.getOwnerEmail());
 			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+			propertyRepo.save(pe);
 		}
 		return dto;
 	}
@@ -97,6 +99,7 @@ public class PropertyServiceImpl implements PropertyService {
 			PropertyEntity pe = optEn.get();
 			pe.setPrice(propertyDto.getPrice());
 			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+			propertyRepo.save(pe);
 		}
 		return dto;
 	}
@@ -108,9 +111,24 @@ public class PropertyServiceImpl implements PropertyService {
 			PropertyEntity pe = optEn.get();
 			pe.setTitle(propertyDto.getTitle());
 			dto = propertyConverter.cpnvertEnitytoDTO(pe);
+			propertyRepo.save(pe);
 		}
 		return dto;
 	}
+	@Override
+	public void deleteProperty(Long id) {
+		propertyRepo.deleteById(id);
+	}
+	@Override
+	public List<PropertyDto> saveProperties(List<PropertyDto> propertiesLis) {
+		for(PropertyDto pd : propertiesLis) {
+			PropertyEntity pe  = propertyConverter.convertDTOtoEntity(pd);
+			pe = propertyRepo.save(pe);
+		}
+		return propertiesLis;
+	}
+		
+	}
+
 	
 	
-}
