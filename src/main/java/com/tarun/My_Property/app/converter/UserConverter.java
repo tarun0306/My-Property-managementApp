@@ -13,10 +13,11 @@ public class UserConverter {
 	public UserDto convertEntitytoDto(UserEntity pe) {
 		
 		UserDto dto = new UserDto();
-		
+		dto.setId(pe.getId());
+		dto.setUserName(pe.getUserName());
 		dto.setOwnerEmail(pe.getOwnerEmail());
 		dto.setPhone(pe.getPhone());
-		dto.setPassword(pe.getPassword());
+		//dto.setPassword(pe.getPassword());
 		
 		return dto; 
 		
@@ -26,10 +27,11 @@ public class UserConverter {
 	public UserEntity convertDtotoEntity(UserDto udt) {
 		
 		UserEntity ue= new UserEntity();
-		
+		ue.setId(udt.getId());
+		ue.setUserName(udt.getUserName());
 		ue.setOwnerEmail(udt.getOwnerEmail());
 		ue.setPhone(udt.getPhone());
-		ue.setPassword(udt.getPassword());
+		//ue.setPassword(udt.getPassword());
 		
 		return ue;
 	}

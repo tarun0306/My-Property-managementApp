@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tarun.My_Property.app.dto.PropertyDto;
+import com.tarun.My_Property.app.dto.UserDto;
 import com.tarun.My_Property.app.service.PropertyService;
+import com.tarun.My_Property.app.service.UserService;
 
 @RestController
 @RequestMapping("api/v1")
@@ -26,6 +28,8 @@ public class PropertyController {
 	
 	@Autowired
 	private PropertyService propertyService;
+	
+	
 	
 	//RESTFUL API is Just mappo
 	//http://localhost:8080/api/v1/hello
@@ -41,7 +45,7 @@ public class PropertyController {
 	}
 	
 	@PostMapping("/saveallproperties")
-	public void saveProperties(@RequestBody List<PropertyDto> propertyList) {
+	public void saveProperties(@RequestBody List<PropertyDto> propertyList) {	
 		propertyList = propertyService.saveProperties(propertyList);
 		ResponseEntity<List<PropertyDto>> responseEntity = new ResponseEntity<>(propertyList,HttpStatus.CREATED);
 	}

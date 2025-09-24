@@ -10,13 +10,16 @@ import jakarta.persistence.Table;
 
 @Entity
 
-@Table(name="PROPERTY_TABLE")
+@Table(name="USER_TABLE")
 
 public class UserEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@Column(name = "Name")
+	private String userName;
 	
 	@Column(name = "EMAIL",nullable=false)
 	private String ownerEmail;
@@ -56,6 +59,14 @@ public class UserEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	

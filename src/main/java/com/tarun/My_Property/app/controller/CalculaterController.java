@@ -43,7 +43,8 @@ public class CalculaterController {
 		
 		Double res = null;
 		res = calDTO.getNum1()*calDTO.getNum2()*calDTO.getNum3()*calDTO.getNum4();
-		ResponseEntity<Double> resEntity = new ResponseEntity<Double>(res,HttpStatus.CREATED);
-		return resEntity;
+		       	
+		return new ResponseEntity<Double>(res,HttpStatus.CREATED);
+		
 	}
 }
