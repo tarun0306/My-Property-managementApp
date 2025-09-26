@@ -3,15 +3,24 @@ package com.tarun.My_Property.app.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDto {
 	
 	private Long id;
+	
+	@NotNull(message = "Owner email is mandatory")
+	@NotEmpty(message ="Owner email is empty")
+	@Size(min =1,max=50 ,message ="Owner email should be between 1 and 50")
 	private String ownerEmail;
 	private String userName;
 	private String phone;
-	
+	@NotEmpty(message ="Password is empty")
+	@NotNull(message = "Password is  mandatory")
 	private String password;
 
 	

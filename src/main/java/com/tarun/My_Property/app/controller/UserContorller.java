@@ -12,20 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tarun.My_Property.app.dto.UserDto;
 import com.tarun.My_Property.app.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("api/v1")
 public class UserContorller {
 	@Autowired
 	private UserService userService;
 	@PostMapping("/user")
-	public ResponseEntity<UserDto> registerUser(@RequestBody UserDto userDto){
-		ResponseEntity<UserDto> responseEntity = new ResponseEntity<>(userService.register(userDto),HttpStatus.CREATED);
-		return responseEntity;
+	public ResponseEntity<UserDto> registerUser(@Valid @RequestBody UserDto userDto){
+		return new ResponseEntity<>(userService.register(userDto),HttpStatus.CREATED);
 	}
 	@PostMapping("/userlogin")
-	public ResponseEntity<UserDto> userLogin(@RequestBody UserDto userDto) {
-		ResponseEntity<UserDto> responseEntity =new ResponseEntity<>(userService.login(userDto.getOwnerEmail(), userDto.getPassword()),HttpStatus.OK);
-		return responseEntity;
+	public ResponseEntity<UserDto> userLogin(@Valid @RequestBody UserDto userDto) {
+		return new ResponseEntity<>(userService.login(userDto.getOwnerEmail(), userDto.getPassword()),HttpStatus.OK);
 	}
+
 
 }

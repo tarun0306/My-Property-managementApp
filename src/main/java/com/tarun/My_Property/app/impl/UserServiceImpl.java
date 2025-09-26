@@ -38,8 +38,7 @@ public class UserServiceImpl implements UserService {
 		}
 		UserEntity userEntity = userConverter.convertDtotoEntity(userdto);
 		userEntity = userRepo.save(userEntity);
-		UserDto dto = userConverter.convertEntitytoDto(userEntity);
-		return dto;
+		return userConverter.convertEntitytoDto(userEntity);
 	}
 
 	@Override
